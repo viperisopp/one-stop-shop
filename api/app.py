@@ -26,9 +26,9 @@ def index():
     if request.method == "GET":
         if session:
             del session['email']
-        collection3.delete_many({})
-        collection3.insert_one({})
-        stores = collection.find()
+#        collection3.delete_many({})
+#        collection3.insert_one({})
+#        stores = collection.find()
         return render_template("index.html",stores=stores)
     if request.method == "POST":
         if 'cont_shop' in request.form:
