@@ -5,14 +5,15 @@ from bson.objectid import ObjectId
 from flask import flash
 import random
 from passlib.hash import sha256_crypt
-
+import os
+from dotenv import load_dotenv
 
 
 app = Flask("one_stop_shop")
 app.config['SECRET_KEY'] = 'safe^&*hdgahksdg'
+load_dotenv()
 
-
-client = pymongo.MongoClient("mongodb+srv://michaely6828:Q7xLbDCazXpzU1hG@cluster0.gdwowj3.mongodb.net/?retryWrites=true&w=majority")
+client = pymongo.MongoClient(os.getenv('MONGO_URI'))
 db = client.one_stop_shop
 
 session = {}
@@ -182,4 +183,4 @@ def checkout_screen():
 
 
 if __name__ == '__main__': 
-    app.run(host='0.0.0.0', debug=True) 
+    app.run() 
