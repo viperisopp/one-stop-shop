@@ -26,7 +26,6 @@ def index():
     if request.method == "GET":
         if session:
             del session['email']
-        print(request.form)
         collection3.delete_many({})
         collection3.insert_one({})
         stores = collection.find()
@@ -35,13 +34,11 @@ def index():
         if 'cont_shop' in request.form:
             if session:
                 del session['email']
-            print(request.form)
             stores = collection.find()
             return render_template("index.html",stores=stores)
         else:
             if session:
                 del session['email']
-            print(request.form)
             collection3.delete_many({})
             collection3.insert_one({})
             stores = collection.find()
@@ -139,14 +136,12 @@ def display_shop(email):
             if request.form['stocktocart'] == '':
                 flash('please select a quantity')
                 return redirect('/shop/'+email)
-            print(id, request.form['stocktocart'])
             collection2.update_one({'_id':id},{'$inc':{'stock':-1*int(request.form['stocktocart'])}})
             product = collection2.find_one({'_id':id})
             product_to_add = {}
             product_to_add['name'] = product['name']
             product_to_add['quantity'] = int(request.form['stocktocart'])
             product_to_add['price'] = product['price']
-            print(product_to_add)
             collection3.update_one({"_id":collection3.find_one({})["_id"]}, {"$push":{'cart':product_to_add}})
             return redirect('/shop/'+email)
         else:
@@ -164,7 +159,6 @@ def checkout_screen():
             flash("You must buy something before checking out")
             return redirect("/")
         cart = []
-        print(items,cart)
         for n in items:
             found = False
             for i in cart:
