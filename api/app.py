@@ -8,8 +8,9 @@ from passlib.hash import sha256_crypt
 import os
 from dotenv import load_dotenv
 
+app = Flask(__name__, template_folder='../templates')
 
-app = Flask("one_stop_shop")
+#app = Flask("one_stop_shop")
 app.config['SECRET_KEY'] = 'safe^&*hdgahksdg'
 load_dotenv()
 
@@ -28,7 +29,8 @@ def index():
             del session['email']
 #        collection3.delete_many({})
 #        collection3.insert_one({})
-#        stores = collection.find()
+        stores = collection.find()
+        print(stores)
         return render_template("index.html",stores=stores)
     if request.method == "POST":
         if 'cont_shop' in request.form:
@@ -177,4 +179,4 @@ def checkout_screen():
 
 
 if __name__ == '__main__': 
-    app.run() 
+    app.run(debug = True) 
