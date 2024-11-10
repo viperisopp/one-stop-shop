@@ -24,28 +24,30 @@ collection3 = db.cart
 
 @app.route('/',methods = ["GET","POST"])
 def index():
-    if request.method == "GET":
-        if session:
-            del session['email']
-#        collection3.delete_many({})
-#        collection3.insert_one({})
-        stores = collection.find()
-        print(stores)
-        return render_template("index.html",stores=stores)
-    if request.method == "POST":
-        if 'cont_shop' in request.form:
-            if session:
-                del session['email']
-            stores = collection.find()
-            return render_template("index.html",stores=stores)
-        else:
-            if session:
-                del session['email']
-            collection3.delete_many({})
-            collection3.insert_one({})
-            stores = collection.find()
-            flash('Checkout Successful!')
-            return render_template("index.html",stores=stores)
+    stores = collection.find()
+    return render_template("index.html",stores=stores)
+#     if request.method == "GET":
+#         if session:
+#             del session['email']
+# #        collection3.delete_many({})
+# #        collection3.insert_one({})
+#         stores = collection.find()
+#         print(stores)
+#         return render_template("index.html",stores=stores)
+#     if request.method == "POST":
+#         if 'cont_shop' in request.form:
+#             if session:
+#                 del session['email']
+#             stores = collection.find()
+#             return render_template("index.html",stores=stores)
+#         else:
+#             if session:
+#                 del session['email']
+#             collection3.delete_many({})
+#             collection3.insert_one({})
+#             stores = collection.find()
+#             flash('Checkout Successful!')
+#             return render_template("index.html",stores=stores)
     
 @app.route('/register', methods = ["POST"])
 def new_shop():
