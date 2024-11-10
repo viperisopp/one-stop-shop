@@ -25,7 +25,7 @@ collection3 = db.cart
 @app.route('/',methods = ["GET","POST"])
 def index():
     stores = collection.find()
-    return render_template("index.html",stores=stores)
+    return "render_template(index.html,stores=stores)"
 #     if request.method == "GET":
 #         if session:
 #             del session['email']
