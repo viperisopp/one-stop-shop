@@ -8,7 +8,7 @@ from passlib.hash import sha256_crypt
 import os
 from dotenv import load_dotenv
 
-app = Flask(__name__, template_folder='../templates')
+app = Flask(__name__)
 
 #app = Flask("one_stop_shop")
 app.config['SECRET_KEY'] = 'safe^&*hdgahksdg'
