@@ -8,7 +8,7 @@ from passlib.hash import sha256_crypt
 import os
 from dotenv import load_dotenv
 
-app = Flask(__name__)
+app = Flask("one_stop_shop")
 
 #app = Flask("one_stop_shop")
 app.config['SECRET_KEY'] = 'safe^&*hdgahksdg'
@@ -24,8 +24,8 @@ collection3 = db.cart
 
 @app.route('/',methods = ["GET","POST"])
 def index():
-    stores = collection.find()
-    return render_template("index.html",stores=stores)
+#    stores = collection.find(), stores = stores
+    return render_template("index.html")
 #     if request.method == "GET":
 #         if session:
 #             del session['email']
